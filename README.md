@@ -1,8 +1,7 @@
 
-You can create this file in your repository either by manually creating a new file named `README.md` and pasting the content, or by using the following Git commands in the terminal:
+### StatePattern
 
-```sh
-echo "# StatePattern
+https://en.wikipedia.org/wiki/State_pattern
 
 This repository demonstrates the implementation of the State design pattern using C# to model the various states of an ATM (Automatic Teller Machine). The State pattern allows an object to alter its behavior when its internal state changes, making the code more modular and easier to maintain.
 
