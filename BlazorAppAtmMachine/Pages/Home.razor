@@ -1,7 +1,20 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<h3>ATM State Pattern Example</h3>
 
-<h1>Hello, world!</h1>
+<div>
+    <div>
+        <button @onclick="InsertCard" disabled="@isInsertCardDisabled">Insert Card</button>
+        <br />
+        <br />
+        <button @onclick="EjectCard" disabled="@isEjectCardDisabled">Eject Card</button>
+        <br />
+        <br />
+        <button @onclick="EnterPin" disabled="@isEnterPinDisabled">Enter Pin</button>
+        <br />
+        <br />
+        <button @onclick="RequestCash" disabled="@isRequestCashDisabled">Request Cash</button>
+    </div>
+</div>
 
-Welcome to your new app.
+<p>@statusMessage</p>
