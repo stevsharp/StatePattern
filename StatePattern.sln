@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatePattern", "StatePattern\StatePattern.csproj", "{DE7D6B80-E240-4DA0-8424-C420AA892A7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatePattern", "StatePattern\StatePattern.csproj", "{DE7D6B80-E240-4DA0-8424-C420AA892A7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATMState", "ATMState\ATMState.csproj", "{45FF0AFD-B677-41B5-B2C5-0E1B605F9A14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATMState", "ATMState\ATMState.csproj", "{45FF0AFD-B677-41B5-B2C5-0E1B605F9A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppAtmMachine", "BlazorAppAtmMachine\BlazorAppAtmMachine.csproj", "{F5EB953E-B9C2-4438-A40F-6919A9E25B6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{45FF0AFD-B677-41B5-B2C5-0E1B605F9A14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45FF0AFD-B677-41B5-B2C5-0E1B605F9A14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45FF0AFD-B677-41B5-B2C5-0E1B605F9A14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5EB953E-B9C2-4438-A40F-6919A9E25B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5EB953E-B9C2-4438-A40F-6919A9E25B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5EB953E-B9C2-4438-A40F-6919A9E25B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5EB953E-B9C2-4438-A40F-6919A9E25B6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
