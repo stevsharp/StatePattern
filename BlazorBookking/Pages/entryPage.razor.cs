@@ -1,18 +1,22 @@
-﻿using Microsoft.AspNetCore.Components.Web;
+﻿using BlazorBookking.Model;
 
-namespace BlazorBookking.Pages
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+
+namespace BlazorBookking.Pages;
+public partial class EntryPage
 {
-    public partial class EntryPage
-    {
-        public string attendeeName { get; set; }
-        public int ticketCount { get; set; }
 
-        private void ValidateNumber(KeyboardEventArgs e)
+    [CascadingParameter]
+    public AttendeModel Attende { get; set; } = new AttendeModel();
+
+    [Parameter]
+    public bool Show { get; set; }
+    private void ValidateNumber(KeyboardEventArgs e)
+    {
+        if (!char.IsDigit((char)e.Key[0]) && e.Key != "Backspace" && e.Key != "Delete")
         {
-            if (!char.IsDigit((char)e.Key[0]) && e.Key != "Backspace" && e.Key != "Delete")
-            {
-                //e.PreventDefault();
-            }
+            //e.PreventDefault();
         }
     }
 }

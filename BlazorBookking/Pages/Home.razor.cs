@@ -1,4 +1,6 @@
-﻿namespace BlazorBookking.Pages
+﻿using BlazorBookking.Model;
+
+namespace BlazorBookking.Pages
 {
     public partial class Home
     {
@@ -13,7 +15,12 @@
 
         private BookingContext booking;
 
-        private EntryPage entryPage = new EntryPage();
+
+        private bool displayEntryPage = false;
+
+        public string DisplayStatus { get; set; }
+
+        public AttendeModel Attende { get; set; } = new AttendeModel();
 
         public void ShowError(string errorText, string caption = "Error")
         {
@@ -23,12 +30,22 @@
 
         public void ShowEntryPage()
         {
+            displayEntryPage = true;
+        }
+
+        public void ShowProcessingError() 
+        { 
 
         }
 
-        public void ShowProcessingError() { }
+        public void ShowStatusPage(string message) 
+        {
+            this.DisplayStatus = message;
 
-        public void ShowStatusPage(string message) { }
+            this.displayEntryPage = false;
+
+            this.StateHasChanged();
+        }
 
         private void NewBooking() 
         {
@@ -37,9 +54,9 @@
 
         private void Submit() 
         {
-            string attendee = entryPage.attendeeName;
+            string attendee = Attende.attendeeName;
             
-            booking?.SubmitDetails(attendee, entryPage.ticketCount);
+            booking?.SubmitDetails(attendee, Attende.ticketCount);
 
         }
 

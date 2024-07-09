@@ -4,13 +4,23 @@
 
 <h1>Event Registration</h1>
 
-<EntryPage>
 
-</EntryPage>
+ <StatusPage Status="@DisplayStatus" />
+
+<br />
+<br />
+
+<br />
+<br />
+
+<CascadingValue Value="Attende">
+    <EntryPage Show="@displayEntryPage"/>
+</CascadingValue>
 
 
 <br />
 <br />
+
 
 <div class="button-group">
     <button @onclick="NewBooking">New Booking</button>

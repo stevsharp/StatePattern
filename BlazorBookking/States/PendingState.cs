@@ -48,9 +48,14 @@ namespace BlazorBookking
             }
         }
 
-        public override void EnterState(BookingContext booking)
+        public override async void EnterState(BookingContext booking)
         {
+            cancelToken = new CancellationTokenSource();
 
+            booking.ShowState("Pending");
+            booking.View.ShowStatusPage("Processing Booking");
+
+            await ProcessBooking(booking, ProcessingComplete, cancelToken);
         }
 
         public static async Task ProcessBooking(BookingContext booking, Action<BookingContext, ProcessingResult> callback, CancellationTokenSource token)

@@ -12,6 +12,8 @@ public class BookingContext
 
     private BookingState currentState;
 
+    public int DisplayStatus { get; set; }
+
     public void TransitionToState(BookingState state)
     {
         currentState = state;
