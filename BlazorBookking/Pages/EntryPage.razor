@@ -1,5 +1,10 @@
-﻿<h3>entryPage</h3>
+﻿
+<div class="form-group">
+    <label style="font-weight: bold;">Attendee Name:</label>
+    <input type="text" @bind-value="attendeeName" class="form-control" style="width: 434px; margin: 0 0 20px 20px;" />
+</div>
 
-@code {
-
-}
+<div class="form-group">
+    <label style="font-weight: bold;">Number of Tickets:</label>
+    <input type="text" @bind-value="ticketCount" @onkeypress="ValidateNumber" class="form-control" style="width: 434px; margin: 0 0 0 20px;" />
+</div>

@@ -37,9 +37,9 @@
 
         private void Submit() 
         {
-            string attendee = entryPage.txtAttendee;
+            string attendee = entryPage.attendeeName;
             
-            booking?.SubmitDetails(attendee, entryPage.txtTicketCont);
+            booking?.SubmitDetails(attendee, entryPage.ticketCount);
 
         }
 
