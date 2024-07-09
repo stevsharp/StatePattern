@@ -60,9 +60,15 @@ namespace BlazorBookking.Pages
 
         }
 
-        private void Cancel() { }
+        private void Cancel() 
+        {
+            booking?.Cancel();
+        }
 
-        private void DatePassed() { }
+        private void DatePassed() 
+        {
+            booking?.DatePassed();
+        }
     }
 }
     

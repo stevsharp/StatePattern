@@ -1,8 +1,8 @@
-﻿using BlazorBookking.States;
+﻿using BlazorBookking.Model;
+using BlazorBookking.States;
 
 namespace BlazorBookking
 {
-    public enum ProcessingResult { Sucess, Fail, Cancel }
 
     internal class PendingState : BookingState
     {
@@ -32,19 +32,19 @@ namespace BlazorBookking
 
         public void ProcessingComplete(BookingContext booking, ProcessingResult result)
         {
-            if (result == ProcessingResult.Sucess)
+            switch (result)
             {
-                booking.TransitionToState(new BookedState());
-            }
-            else if (result == ProcessingResult.Fail)
-            {
-                booking.View.ShowProcessingError();
+                case ProcessingResult.Sucess:
+                    booking.TransitionToState(new BookedState());
+                    break;
+                case ProcessingResult.Fail:
+                    booking.View.ShowProcessingError();
 
-                booking.TransitionToState(new NewState());
-            }
-            else if (result == ProcessingResult.Cancel)
-            {
-                booking.TransitionToState(new ClosedState("Processing Canceled"));
+                    booking.TransitionToState(new NewState());
+                    break;
+                case ProcessingResult.Cancel:
+                    booking.TransitionToState(new ClosedState("Processing Canceled"));
+                    break;
             }
         }
 
@@ -53,6 +53,7 @@ namespace BlazorBookking
             cancelToken = new CancellationTokenSource();
 
             booking.ShowState("Pending");
+
             booking.View.ShowStatusPage("Processing Booking");
 
             await ProcessBooking(booking, ProcessingComplete, cancelToken);

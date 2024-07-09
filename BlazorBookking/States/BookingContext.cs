@@ -17,6 +17,7 @@ public class BookingContext
     public void TransitionToState(BookingState state)
     {
         currentState = state;
+
         currentState.EnterState(this);
     }
 

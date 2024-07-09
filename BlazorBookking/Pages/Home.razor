@@ -4,12 +4,23 @@
 
 <h1>Event Registration</h1>
 
-
  <StatusPage Status="@DisplayStatus" />
 
 <br />
 <br />
+<div class="grid-container">
+    <div class="grid-item" style="font-weight: bold; text-align: left;">Booking ID:</div>
+    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@BookingID</div>
 
+    <div class="grid-item" style="font-weight: bold; text-align: left;">Current State:</div>
+    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@CurrentState</div>
+
+    <div class="grid-item" style="font-weight: bold; text-align: left;">Attendee Name:</div>
+    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@Attendee</div>
+
+    <div class="grid-item" style="font-weight: bold; text-align: left;">Tickets:</div>
+    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@TicketCount</div>
+</div>
 <br />
 <br />
 
@@ -17,10 +28,8 @@
     <EntryPage Show="@displayEntryPage"/>
 </CascadingValue>
 
-
 <br />
 <br />
-
 
 <div class="button-group">
     <button @onclick="NewBooking">New Booking</button>
