@@ -18,6 +18,7 @@ internal class NewState : BookingState
     {
         booking.Attendee = attendee;
         booking.TicketCount = ticketCount;
+
         booking.TransitionToState(new PendingState());
     }
 

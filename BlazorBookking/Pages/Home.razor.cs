@@ -54,9 +54,11 @@ namespace BlazorBookking.Pages
 
         private void Submit() 
         {
-            string attendee = Attende.attendeeName;
+            FormService.RequestSubmit();
+
+            //string attendee = Attende.attendeeName;
             
-            booking?.SubmitDetails(attendee, Attende.ticketCount);
+            //booking?.SubmitDetails(attendee, Attende.ticketCount);
 
         }
 

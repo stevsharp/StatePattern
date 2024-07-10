@@ -1,14 +1,28 @@
-﻿@if (@Show)
-{
-    <div class="form-group">
-        <label style="font-weight: bold;">Attendee Name:</label>
-        <input type="text" @bind-value="Attende.attendeeName" class="form-control" 
-        style="width: 434px; margin: 0 0 20px 20px;" />
-    </div>
+﻿@using BlazorBookking.Services
+@inject SubmitService FormService
 
-    <div class="form-group">
-        <label style="font-weight: bold;">Number of Tickets:</label>
-        <input type="text" @bind-value="Attende.ticketCount" @onkeypress="ValidateNumber" class="form-control" 
-        style="width: 434px; margin: 0 0 0 20px;" />
-    </div>
+@if (@Show)
+{
+    <EditForm Model="@Attende" OnValidSubmit="HandleValidSubmit" Context="CurrentEditContext">
+
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label style="font-weight: bold;">Attendee Name:</label>
+            <input type="text" @bind-value="@Attende.attendeeName" class="form-control" style="width: 434px; margin: 0 0 20px 20px;" />
+
+            <ValidationMessage For="@(() => @Attende.attendeeName)" />
+
+        </div>
+
+        <div class="form-group">
+            <label style="font-weight: bold;">Number of Tickets:</label>
+            <input type="text" @bind-value="@Attende.ticketCount" @onkeypress="ValidateNumber" class="form-control" style="width: 434px; margin: 0 0 0 20px;" />
+
+            <ValidationMessage For="@(() => @Attende.ticketCount)" />
+        </div>
+
+    </EditForm>
+    
 }
