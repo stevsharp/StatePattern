@@ -2,38 +2,68 @@
 
 <PageTitle>Event Registration</PageTitle>
 
-<h1>Event Registration</h1>
+<div class="border p-3" style="background-color: lightgray;">
+    <div class="stack-panel">
 
- <StatusPage Status="@DisplayStatus" />
+        <div class="stack-panel" style="height: 60px; background-color: cadetblue;">
+            <div class="grid" style="visibility: hidden;">
+                <div class="row">
+                    <div class="col" style="width: 97%;">
+                        <label style="font-weight: bold;">Booking ID:</label>
+                    </div>
+                    <div class="col" style="width: 446%;">
+                        <label id="lblBookingID" style="font-weight: bold; color: red;">@BookingID</label>
+                    </div>
+                    <div class="col" style="width: 121%;">
+                        <label style="font-weight: bold;">Attendee Name:</label>
+                    </div>
+                    <div class="col" style="width: 110%;">
+                        <label id="lblAttendee" style="font-weight: bold; color: red;">@Attendee</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="width: 97%;">
+                        <label style="font-weight: bold;">Current State:</label>
+                    </div>
+                    <div class="col" style="width: 446%;">
+                        <label id="lblCurrentState" style="font-weight: bold; color: red;">@CurrentState</label>
+                    </div>
+                    <div class="col" style="width: 121%;">
+                        <label style="font-weight: bold;">Tickets:</label>
+                    </div>
+                    <div class="col" style="width: 110%;">
+                        <label id="lblTicketCount" style="font-weight: bold; color: red;">@TicketCount</label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<br />
-<br />
-<div class="grid-container">
-    <div class="grid-item" style="font-weight: bold; text-align: left;">Booking ID:</div>
-    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@BookingID</div>
+        <div class="frame" style="height: 290px; background-color: white; margin-top: 10px;">
+          
+            <StatusPage Status="@DisplayStatus" />
 
-    <div class="grid-item" style="font-weight: bold; text-align: left;">Current State:</div>
-    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@CurrentState</div>
+            <CascadingValue Value="Attende">
+                <EntryPage Show="@displayEntryPage" />
+            </CascadingValue>
 
-    <div class="grid-item" style="font-weight: bold; text-align: left;">Attendee Name:</div>
-    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@Attendee</div>
+        </div>
 
-    <div class="grid-item" style="font-weight: bold; text-align: left;">Tickets:</div>
-    <div class="grid-item" style="font-weight: bold; text-align: left; color: red;">@TicketCount</div>
-</div>
-<br />
-<br />
+        <div class="grid" style="vertical-align: bottom;">
+            <div class="row">
+                <div class="col">
+                    <button @onclick="NewBooking">New Booking</button>
+                </div>
+                <div @onclick="Submit" class="col" style="margin: 0 10px;">
+                    <button >Submit</button>
+                </div>
+                <div @onclick="Cancel"  class="col" style="margin-right: 10px;">
+                    <button >Cancel</button>
+                </div>
+                <div @onclick="DatePassed" class="col">
+                    <button >Date Passed</button>
+                </div>
+            </div>
+        </div>
 
-<CascadingValue Value="Attende">
-    <EntryPage Show="@displayEntryPage"/>
-</CascadingValue>
-
-<br />
-<br />
-
-<div class="button-group">
-    <button @onclick="NewBooking">New Booking</button>
-    <button @onclick="Submit">Submit</button>
-    <button @onclick="Cancel">Cancel</button>
-    <button @onclick="DatePassed">Date Passed</button>
+    </div>
 </div>

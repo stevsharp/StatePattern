@@ -3,6 +3,6 @@
     public class AttendeModel
     {
         public string attendeeName { get; set; }
-        public int ticketCount { get; set; }
+        public int ticketCount { get; set; } = 1;
     }
 }
