@@ -14,18 +14,38 @@ public partial class EntryPage
     [Parameter]
     public bool Show { get; set; }
 
+    [Parameter]
+    public BookingContext Booking { get; set; }
+
     private IDisposable? _subscription;
 
-    private EditContext? CurrentEditContext;
+    private EditContext? editContext;
+
+    private ValidationMessageStore? messageStore;
 
     protected override async Task OnInitializedAsync()
     {
 
-        CurrentEditContext = new EditContext(this);
+        editContext = new(Attende);
+
+        editContext.OnValidationRequested += HandleValidationRequested;
+
+        messageStore = new(editContext);
 
         _subscription = FormService.SubmitRequested.Subscribe(_ => HandleValidSubmit());
 
         await base.OnInitializedAsync();
+    }
+
+    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs args)
+    {
+        messageStore?.Clear();
+
+        // Custom validation logic
+        //if (!Model!.Options)
+        //{
+        //    messageStore?.Add(() => Model.Options, "Select at least one.");
+        //}
     }
 
     private void ValidateNumber(KeyboardEventArgs e)
@@ -35,25 +55,25 @@ public partial class EntryPage
             //e.PreventDefault();
         }
     }
-    /// <summary>
+    /// <summary>   
     /// Context="CurrentEditContext"
     /// </summary>
-    private void Submit()
+    private void Submit(EditContext editContext)
     {
-        //var error = string.Join(". ", editContext.GetValidationMessages());
+        string attendee = Attende.attendeeName;
 
-        Console.WriteLine("Form submitted successfully!");
+        Booking?.SubmitDetails(attendee, Attende.ticketCount);
     }
 
     private void HandleValidSubmit()
     {
         InvokeAsync(() =>
         {
-            CurrentEditContext?.Validate();
+            bool formIsValid = editContext.Validate();
 
-            if (CurrentEditContext.Validate())
+            if (formIsValid)
             {
-                Submit();
+                Submit(this.editContext);
             }
         });
     }
@@ -61,5 +81,10 @@ public partial class EntryPage
     public void Dispose()
     {
         _subscription?.Dispose();
+
+        if (editContext is not null)
+        {
+            editContext.OnValidationRequested -= HandleValidationRequested;
+        }
     }
 }

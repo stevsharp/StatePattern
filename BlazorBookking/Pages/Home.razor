@@ -9,10 +9,11 @@
     <div class="stack-panel">
 
         <div class="stack-panel" style="height: 60px; background-color: cadetblue;">
-            <div class="grid" style="visibility: hidden;">
+            <div class="grid" >
+            @* <div class="grid" style="visibility: hidden;"> *@
                 <div class="row">
                     <div class="col" style="width: 97%;">
-                        <label style="font-weight: bold;">Booking ID:</label>
+                        <label style="font-weight: bold; ">Booking ID:</label>
                     </div>
                     <div class="col" style="width: 446%;">
                         <label id="lblBookingID" style="font-weight: bold; color: red;">@BookingID</label>
@@ -41,12 +42,12 @@
             </div>
         </div>
 
-        <div class="frame" style="height: 290px; background-color: white; margin-top: 10px;">
+        <div class="frame" style="height: 400px; background-color: white; margin-top: 10px;">
           
             <StatusPage Status="@DisplayStatus" />
 
             <CascadingValue Value="Attende">
-                <EntryPage Show="@displayEntryPage" />
+                <EntryPage Show="@displayEntryPage" Booking="@booking" />
             </CascadingValue>
 
         </div>

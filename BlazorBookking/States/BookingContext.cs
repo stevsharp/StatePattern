@@ -5,7 +5,7 @@ namespace BlazorBookking;
 
 public class BookingContext
 {
-    public Home View { get; set; }
+    public Home View { get; protected set; }
     public string Attendee { get; set; }
     public int TicketCount { get; set; }
     public int BookingID { get; set; }

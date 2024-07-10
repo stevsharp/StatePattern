@@ -6,7 +6,7 @@ namespace BlazorBookking.Services;
 public class SubmitService
 {
 
-    private readonly Subject<Unit> _submitSubject = new Subject<Unit>();
+    private readonly Subject<Unit> _submitSubject = new();
 
     public IObservable<Unit> SubmitRequested => _submitSubject;
 
@@ -14,6 +14,5 @@ public class SubmitService
     {
         _submitSubject.OnNext(Unit.Default);
     }
-
 
 }
