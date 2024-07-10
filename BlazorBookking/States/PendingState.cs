@@ -58,19 +58,18 @@ internal class PendingState : BookingState
         await ProcessBooking(booking, ProcessingComplete, cancelToken);
     }
 
-    public static async Task ProcessBooking(BookingContext booking, Action<BookingContext, ProcessingResult> callback, CancellationTokenSource token)
+    public static async Task ProcessBooking(BookingContext booking, Action<BookingContext, ProcessingResult> callback, 
+        CancellationTokenSource token)
     {
 
         try
         {
-            await Task.Run(async delegate
-            {
-                await Task.Delay(new TimeSpan(0, 0, 3), token.Token);
-            });
+            await Task.Delay(new TimeSpan(0, 0, 3), token.Token);
         }
         catch (OperationCanceledException)
         {
             callback(booking, ProcessingResult.Cancel);
+
             return;
         }
 
