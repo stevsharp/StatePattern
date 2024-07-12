@@ -5,6 +5,14 @@
 
 <PageTitle>Event Registration</PageTitle>
 
+@if (IsErrorModalOpen)
+{
+    <ModalDialog Title="Error"
+                 Text="@ErrorModalOpenContent"
+                 OnClose="@OnDialogClose">
+    </ModalDialog>
+}
+
 <div class="border p-3" style="background-color: lightgray;">
     <div class="stack-panel">
 

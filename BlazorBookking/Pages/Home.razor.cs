@@ -1,71 +1,86 @@
 ﻿using BlazorBookking.Model;
 
-namespace BlazorBookking.Pages
+namespace BlazorBookking.Pages;
+
+public partial class Home
 {
-    public partial class Home
+    public string CurrentState { get; set; }
+
+    public int TicketCount { get; set; }
+
+    public string Attendee { get; set; }
+
+    public int BookingID { get; set; }
+
+
+    private BookingContext booking;
+
+
+    private bool displayEntryPage = false;
+
+    public string DisplayStatus { get; set; }
+
+    protected string ErrorModalOpenContent = string.Empty;
+
+    protected bool IsErrorModalOpen = false;
+
+    public AttendeModel Attende { get; set; } = new AttendeModel();
+
+    public void ShowError(string errorText, string caption = "Error")
     {
-        public string CurrentState { get; set; }
+        IsErrorModalOpen = true;
 
-        public int TicketCount { get; set; }
+        this.ErrorModalOpenContent = errorText;
+    }
 
-        public string Attendee { get; set; }
+    private Task OnDialogClose(bool input)
+    {
+        IsErrorModalOpen = false;
 
-        public int BookingID { get; set; }
+        StateHasChanged();
 
+        return Task.CompletedTask;
+    }
 
-        private BookingContext booking;
+    public void ShowEntryPage()
+    {
+        displayEntryPage = true;
+    }
 
+    public void ShowProcessingError() 
+    {
 
-        private bool displayEntryPage = false;
+        ShowError("Processing failed. Enter a new booking", "Processing Error");
 
-        public string DisplayStatus { get; set; }
+        this.StateHasChanged();
+    }
 
-        public AttendeModel Attende { get; set; } = new AttendeModel();
+    public void ShowStatusPage(string message) 
+    {
+        this.DisplayStatus = message;
 
-        public void ShowError(string errorText, string caption = "Error")
-        {
-            //MessageBox.Show(this, errorText, caption);
+        this.displayEntryPage = false;
 
-        }
+        this.StateHasChanged();
+    }
 
-        public void ShowEntryPage()
-        {
-            displayEntryPage = true;
-        }
+    private void NewBooking() 
+    {
+        booking = new BookingContext(this);
+    }
 
-        public void ShowProcessingError() 
-        { 
+    private void Submit() 
+    {
+        FormService.RequestSubmit();
+    }
 
-        }
+    private void Cancel() 
+    {
+        booking?.Cancel();
+    }
 
-        public void ShowStatusPage(string message) 
-        {
-            this.DisplayStatus = message;
-
-            this.displayEntryPage = false;
-
-            this.StateHasChanged();
-        }
-
-        private void NewBooking() 
-        {
-            booking = new BookingContext(this);
-        }
-
-        private void Submit() 
-        {
-            FormService.RequestSubmit();
-        }
-
-        private void Cancel() 
-        {
-            booking?.Cancel();
-        }
-
-        private void DatePassed() 
-        {
-            booking?.DatePassed();
-        }
+    private void DatePassed() 
+    {
+        booking?.DatePassed();
     }
 }
-    
