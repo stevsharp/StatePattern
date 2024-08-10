@@ -89,6 +89,10 @@ To run the ATM state machine simulation, follow these steps:
        }
    }
 
+## Connect with Me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/spyros-ponaris-913a6937/)
+
 
 ## License
 
