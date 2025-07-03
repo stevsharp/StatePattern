@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppAtmMachine", "Blaz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorBookking", "BlazorBookking\BlazorBookking.csproj", "{BC68131C-031E-4F66-B7EA-2BF0A475E73A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAtmMachine", "BlazorAtmMachine\BlazorAtmMachine.csproj", "{55CDC5E6-0106-44A5-8E6F-D311345CD1ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BC68131C-031E-4F66-B7EA-2BF0A475E73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC68131C-031E-4F66-B7EA-2BF0A475E73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC68131C-031E-4F66-B7EA-2BF0A475E73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55CDC5E6-0106-44A5-8E6F-D311345CD1ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55CDC5E6-0106-44A5-8E6F-D311345CD1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55CDC5E6-0106-44A5-8E6F-D311345CD1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55CDC5E6-0106-44A5-8E6F-D311345CD1ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

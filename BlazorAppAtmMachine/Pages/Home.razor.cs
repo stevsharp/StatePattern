@@ -5,57 +5,86 @@ namespace BlazorAppAtmMachine.Pages;
 
 public partial class Home
 {
-    private string statusMessage;
 
-    private ATM _atm;
+    private int enteredPin = 1234;
 
-    private bool isInsertCardDisabled;
-    private bool isEjectCardDisabled;
-    private bool isEnterPinDisabled;
-    private bool isRequestCashDisabled;
+    private void SubmitPin()
+    {
+        AtmMachine.EnterPIN(enteredPin);
+    }
 
     protected override void OnInitialized()
     {
-        _atm = new ATM(500);            // Initialize ATM with some cash
-
-        UpdateStatus();
+        AtmMachine.OnStateChanged += StateHasChanged;
     }
 
-    private void InsertCard()
+    public void Dispose()
     {
-        _atm.CurrentState.InsertCard(_atm);
-
-        UpdateStatus();
+        AtmMachine.OnStateChanged -= StateHasChanged;
     }
 
-    private void EjectCard()
-    {
-        _atm.CurrentState.EjectCard(_atm);
+    //private string statusMessage;
 
-        UpdateStatus();
-    }
+    //private ATM _atm;
 
-    private void EnterPin()
-    {
-        _atm.CurrentState.InsertPin(_atm, 1234); // Example PIN
+    //private bool isInsertCardDisabled;
+    //private bool isEjectCardDisabled;
+    //private bool isEnterPinDisabled;
+    //private bool isRequestCashDisabled;
+    //private int enteredPin = 1234;
 
-        UpdateStatus();
-    }
+    //private void SubmitPin()
+    //{
+    //    AtmMachine.EnterPIN(enteredPin);
+    //}
 
-    private void RequestCash()
-    {
-        _atm.CurrentState.RequestCash(_atm, 100); // Example cash amount
+    //protected override void OnInitialized()
+    //{
+    //    _atm = new ATM(500);            // Initialize ATM with some cash
+    //    AtmMachine.OnStateChanged += StateHasChanged;
+    //    UpdateStatus();
+    //}
 
-        UpdateStatus();
-    }
+    //private void InsertCard()
+    //{
+    //    _atm.CurrentState.InsertCard(_atm);
 
-    private void UpdateStatus()
-    {
-        statusMessage = $"ATM current state: {_atm.CurrentState.GetType().Name} - Money {_atm.CashInMachine}";
+    //    UpdateStatus();
+    //}
 
-        isInsertCardDisabled = _atm.CurrentState is HasCardState || _atm.CurrentState is HasCorrectPinState || _atm.CurrentState is NoCashState;
-        isEjectCardDisabled = _atm.CurrentState is NoCardState || _atm.CurrentState is NoCashState;
-        isEnterPinDisabled = _atm.CurrentState is NoCardState || _atm.CurrentState is HasCorrectPinState || _atm.CurrentState is NoCashState;
-        isRequestCashDisabled = _atm.CurrentState is NoCardState || _atm.CurrentState is HasCardState || _atm.CurrentState is NoCashState || !_atm.CorrectPinEntered;
-    }
+    //private void EjectCard()
+    //{
+    //    _atm.CurrentState.EjectCard(_atm);
+
+    //    UpdateStatus();
+    //}
+
+    //private void EnterPin()
+    //{
+    //    _atm.CurrentState.InsertPin(_atm, 1234); // Example PIN
+
+    //    UpdateStatus();
+    //}
+
+    //private void RequestCash()
+    //{
+    //    _atm.CurrentState.RequestCash(_atm, 100); // Example cash amount
+
+    //    UpdateStatus();
+    //}
+
+    //private void UpdateStatus()
+    //{
+    //    statusMessage = $"ATM current state: {_atm.CurrentState.GetType().Name} - Money {_atm.CashInMachine}";
+
+    //    isInsertCardDisabled = _atm.CurrentState is HasCardState || _atm.CurrentState is HasCorrectPinState || _atm.CurrentState is NoCashState;
+    //    isEjectCardDisabled = _atm.CurrentState is NoCardState || _atm.CurrentState is NoCashState;
+    //    isEnterPinDisabled = _atm.CurrentState is NoCardState || _atm.CurrentState is HasCorrectPinState || _atm.CurrentState is NoCashState;
+    //    isRequestCashDisabled = _atm.CurrentState is NoCardState || _atm.CurrentState is HasCardState || _atm.CurrentState is NoCashState || !_atm.CorrectPinEntered;
+    //}
+
+    //public void Dispose()
+    //{
+    //    AtmMachine.OnStateChanged -= StateHasChanged;
+    //}
 }

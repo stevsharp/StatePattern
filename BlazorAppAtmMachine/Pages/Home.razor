@@ -1,20 +1,22 @@
 ﻿@page "/"
-
+@using ATMState
+@inject ATMMachine AtmMachine
 <h3>ATM State Pattern Example</h3>
 
-<div>
-    <div>
-        <button @onclick="InsertCard" disabled="@isInsertCardDisabled">Insert Card</button>
-        <br />
-        <br />
-        <button @onclick="EjectCard" disabled="@isEjectCardDisabled">Eject Card</button>
-        <br />
-        <br />
-        <button @onclick="EnterPin" disabled="@isEnterPinDisabled">Enter Pin</button>
-        <br />
-        <br />
-        <button @onclick="RequestCash" disabled="@isRequestCashDisabled">Request Cash</button>
-    </div>
+<h3>ATM Simulator</h3>
+
+<p><strong>Current State:</strong> @AtmMachine.CurrentStateName</p>
+
+<div class="mb-3">
+    <label for="pinInput" class="form-label">Enter PIN</label>
+    <input id="pinInput" type="number" class="form-control" @bind="enteredPin" disabled="@AtmMachine.IsEnterPinDisabled" />
+    <button class="btn btn-secondary mt-2" @onclick="SubmitPin" disabled="@AtmMachine.IsEnterPinDisabled">Submit PIN</button>
 </div>
 
-<p>@statusMessage</p>
+<div class="btn-group mb-3" role="group">
+    <button class="btn btn-primary" @onclick="AtmMachine.InsertCard" disabled="@AtmMachine.IsInsertCardDisabled">Insert Card</button>
+    <button class="btn btn-success" @onclick="AtmMachine.SelectTransaction" disabled="@AtmMachine.IsSelectTransactionDisabled">Select Transaction</button>
+    <button class="btn btn-warning" @onclick="AtmMachine.ProcessTransaction" disabled="@AtmMachine.IsProcessTransactionDisabled">Process Transaction</button>
+    <button class="btn btn-danger" @onclick="AtmMachine.EjectCard" disabled="@AtmMachine.IsEjectCardDisabled">Eject Card</button>
+</div>
+
