@@ -63,13 +63,11 @@ public class ATMMachine
 
     private void CaptureOutput(Action action)
     {
-        using (var sw = new StringWriter())
-        {
-            Console.SetOut(sw);
-            action();
-            LastMessage = sw.ToString();
-            NotifyStateChanged();
-        }
+        using var sw = new StringWriter();
+        Console.SetOut(sw);
+        action();
+        LastMessage = sw.ToString();
+        NotifyStateChanged();
     }
 
     public bool IsInsertCardDisabled => _currentState is AuthenticationState || _currentState is TransactionSelectionState || _currentState is TransactionProcessingState;
