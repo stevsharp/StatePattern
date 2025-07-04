@@ -3,6 +3,12 @@
 
 https://en.wikipedia.org/wiki/State_pattern
 
+Read the full article at : 
+
+Understanding the State Pattern
+
+https://dev.to/stevsharp/understanding-the-state-pattern-4bf0
+
 This repository demonstrates the implementation of the State design pattern using C# to model the various states of an ATM (Automatic Teller Machine). The State pattern allows an object to alter its behavior when its internal state changes, making the code more modular and easier to maintain.
 
 ## Table of Contents
