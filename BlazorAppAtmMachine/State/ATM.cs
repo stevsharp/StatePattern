@@ -23,6 +23,8 @@ public class ATM
 
     public ATM(int initialCash)
     {
+        this.CashInMachine = initialCash;
+
         HasCardState = new HasCardState();
 
         NoCardState = new NoCardState();
