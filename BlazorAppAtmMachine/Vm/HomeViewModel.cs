@@ -21,11 +21,22 @@ public partial class HomeViewModel : ObservableObject, IDisposable
     [ObservableProperty]
     private int enteredPin = 0;
 
+    [ObservableProperty]
+    private decimal transactionAmount = 0m;
+
     // Command bindings
     [RelayCommand] private void SubmitPin() => _atm.EnterPIN(this.enteredPin);
     [RelayCommand] private void InsertCard() => _atm.InsertCard();
     [RelayCommand] private void SelectTransaction() => _atm.SelectTransaction();
-    [RelayCommand] private void ProcessTransaction() => _atm.ProcessTransaction();
+
+    [RelayCommand(CanExecute = nameof(CanProcessTransaction))]
+    public void ProcessTransaction()
+    {
+        _atm.TransactionAmount = transactionAmount;
+        _atm.ProcessTransaction();
+    }
+
+    private bool CanProcessTransaction => transactionAmount > 0;
     [RelayCommand] private void EjectCard() => _atm.EjectCard();
 
     // Expose state-dependent button availability via the current state

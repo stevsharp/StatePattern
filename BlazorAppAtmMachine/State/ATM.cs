@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-
+﻿
 
 namespace BlazorAppAtmMachine.State;
 
 public class ATM
 {
+    public decimal TransactionAmount { get; set; }
     public IATMState HasCardState { get; set; }
     public IATMState NoCardState { get; set; }
     public IATMState HasCorrectPinState { get; set; }
