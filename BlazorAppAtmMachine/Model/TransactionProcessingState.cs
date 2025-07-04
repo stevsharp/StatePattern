@@ -1,49 +1,78 @@
-﻿namespace ATMState
+﻿namespace ATMState;
+
+/// <summary>
+/// Represents the ATM state during a transaction process.
+/// All user actions are blocked until the transaction completes.
+/// </summary>
+public class TransactionProcessingState(ATMMachine atmMachine) : IATMState
 {
-    public class TransactionProcessingState : IATMState
+    /// <summary>
+    /// Reference to the context ATM machine.
+    /// </summary>
+    private readonly ATMMachine _atmMachine = atmMachine;
+
+    /// <inheritdoc/>
+    public bool CanInsertCard => false;
+
+    /// <inheritdoc/>
+    public bool CanEnterPin => false;
+
+    /// <inheritdoc/>
+    public bool CanSelectTransaction => false;
+
+    /// <inheritdoc/>
+    public bool CanProcessTransaction => false;
+
+    /// <inheritdoc/>
+    public bool CanEjectCard => false;
+
+    /// <summary>
+    /// Notifies the user that a card cannot be inserted during a transaction.
+    /// </summary>
+    public void InsertCard()
     {
-        private ATMMachine _atmMachine;
+        Console.WriteLine("Transaction in progress. Please wait.");
+    }
 
-        public bool CanInsertCard { get; }
-        public bool CanEnterPin { get; }
-        public bool CanSelectTransaction { get; }
-        public bool CanProcessTransaction { get; }
-        public bool CanEjectCard { get; }
+    /// <summary>
+    /// Notifies the user that entering a PIN is not allowed during a transaction.
+    /// </summary>
+    public void EnterPIN(int pin)
+    {
+        Console.WriteLine("Transaction in progress. Please wait.");
+    }
 
-        public TransactionProcessingState(ATMMachine atmMachine)
-        {
-            _atmMachine = atmMachine;
-        }
+    /// <summary>
+    /// Notifies the user that transaction selection is blocked during processing.
+    /// </summary>
+    public void SelectTransaction()
+    {
+        Console.WriteLine("Transaction in progress. Please wait.");
+    }
 
-        public void InsertCard()
-        {
-            Console.WriteLine("Transaction in progress. Please wait.");
-        }
+    /// <summary>
+    /// Processes the transaction, notifies the user, and transitions to the Idle state.
+    /// </summary>
+    public void ProcessTransaction()
+    {
+        Console.WriteLine("Transaction completed.");
+        _atmMachine.SetState(_atmMachine.GetIdleState());
+    }
 
-        public void EnterPIN(int pin)
-        {
-            Console.WriteLine("Transaction in progress. Please wait.");
-        }
+    /// <summary>
+    /// Notifies the user that card ejection is not possible during a transaction.
+    /// </summary>
+    public void EjectCard()
+    {
+        Console.WriteLine("Transaction in progress. Please wait.");
+    }
 
-        public void SelectTransaction()
-        {
-            Console.WriteLine("Transaction in progress. Please wait.");
-        }
-
-        public void ProcessTransaction()
-        {
-            Console.WriteLine("Transaction completed.");
-            _atmMachine.SetState(_atmMachine.GetIdleState());
-        }
-
-        public void EjectCard()
-        {
-            Console.WriteLine("Transaction in progress. Please wait.");
-        }
-
-        public void EnterPin(int pin)
-        {
-            throw new NotImplementedException();
-        }
+    /// <summary>
+    /// Extra method implementation to conform to IATMState.
+    /// This is redundant with EnterPIN and could be cleaned up if not used elsewhere.
+    /// </summary>
+    public void EnterPin(int pin)
+    {
+        Console.WriteLine("Entering PIN is not allowed during transaction processing.");
     }
 }

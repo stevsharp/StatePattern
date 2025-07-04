@@ -15,7 +15,7 @@ internal class NoCardState : IATMState
 
     public void EnterPin(ATM atm, int pin)
     {
-        throw new NotImplementedException();
+
     }
 
     public void InsertCard(ATM atm)
@@ -40,6 +40,6 @@ internal class NoCardState : IATMState
 
     public void SelectTransaction(ATM atm)
     {
-        throw new NotImplementedException();
+
     }
 }
