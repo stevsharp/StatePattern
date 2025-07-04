@@ -16,10 +16,7 @@ public class ATM
 
     public event Action? OnStateChanged;
 
-    public void RaiseStateChanged()
-    {
-        OnStateChanged?.Invoke();
-    }
+    public void RaiseStateChanged() => OnStateChanged?.Invoke();
 
     public ATM(int initialCash)
     {
@@ -36,11 +33,7 @@ public class ATM
         CurrentState = initialCash > 0 ? NoCardState : NoCashState;
     }
 
-    public void SetState(IATMState newState)
-    {
-        CurrentState = newState;
-
-    }
+    public void SetState(IATMState newState) => CurrentState = newState;
 
     public void InsertCard() => CurrentState.InsertCard(this);
     public void EjectCard() => CurrentState.EjectCard(this);

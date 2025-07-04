@@ -9,6 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\ATM.cs" />
+    <Compile Remove="Model\AuthenticationState.cs" />
+    <Compile Remove="Model\IATMState.cs" />
+    <Compile Remove="Model\IdleState.cs" />
+    <Compile Remove="Model\NoCardState.cs" />
+    <Compile Remove="Model\TransactionProcessingState.cs" />
+    <Compile Remove="Model\TransactionSelectionState.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.5" PrivateAssets="all" />
@@ -17,6 +27,10 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>
