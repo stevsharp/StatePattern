@@ -1,39 +1,49 @@
-﻿namespace ATMState
+﻿namespace ATMState;
+
+public class TransactionSelectionState : IATMState
 {
-    public class TransactionSelectionState : IATMState
+    private ATMMachine _atmMachine;
+
+    public bool CanInsertCard { get; }
+    public bool CanEnterPin { get; }
+    public bool CanSelectTransaction { get; }
+    public bool CanProcessTransaction { get; }
+    public bool CanEjectCard { get; }
+
+    public TransactionSelectionState(ATMMachine atmMachine)
     {
-        private ATMMachine _atmMachine;
+        _atmMachine = atmMachine;
+    }
 
-        public TransactionSelectionState(ATMMachine atmMachine)
-        {
-            _atmMachine = atmMachine;
-        }
+    public void InsertCard()
+    {
+        Console.WriteLine("Card already inserted.");
+    }
 
-        public void InsertCard()
-        {
-            Console.WriteLine("Card already inserted.");
-        }
+    public void EnterPIN(int pin)
+    {
+        Console.WriteLine("PIN already entered.");
+    }
 
-        public void EnterPIN(int pin)
-        {
-            Console.WriteLine("PIN already entered.");
-        }
+    public void SelectTransaction()
+    {
+        Console.WriteLine("Transaction selected.");
+        _atmMachine.SetState(_atmMachine.GetTransactionProcessingState());
+    }
 
-        public void SelectTransaction()
-        {
-            Console.WriteLine("Transaction selected.");
-            _atmMachine.SetState(_atmMachine.GetTransactionProcessingState());
-        }
+    public void ProcessTransaction()
+    {
+        Console.WriteLine("Select a transaction first.");
+    }
 
-        public void ProcessTransaction()
-        {
-            Console.WriteLine("Select a transaction first.");
-        }
+    public void EjectCard()
+    {
+        Console.WriteLine("Card ejected.");
+        _atmMachine.SetState(_atmMachine.GetIdleState());
+    }
 
-        public void EjectCard()
-        {
-            Console.WriteLine("Card ejected.");
-            _atmMachine.SetState(_atmMachine.GetIdleState());
-        }
+    public void EnterPin(int pin)
+    {
+        throw new NotImplementedException();
     }
 }

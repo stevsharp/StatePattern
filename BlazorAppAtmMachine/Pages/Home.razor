@@ -1,22 +1,38 @@
 ﻿@page "/"
 @using ATMState
-@inject ATMMachine AtmMachine
-<h3>ATM State Pattern Example</h3>
+@using BlazorAppAtmMachine.Vm
 
-<h3>ATM Simulator</h3>
+<p>State: @hViewModel.CurrentStateName</p>
 
-<p><strong>Current State:</strong> @AtmMachine.CurrentStateName</p>
+<p>Cash left: @hViewModel.CashInMachine</p>
 
 <div class="mb-3">
     <label for="pinInput" class="form-label">Enter PIN</label>
-    <input id="pinInput" type="number" class="form-control" @bind="enteredPin" disabled="@AtmMachine.IsEnterPinDisabled" />
-    <button class="btn btn-secondary mt-2" @onclick="SubmitPin" disabled="@AtmMachine.IsEnterPinDisabled">Submit PIN</button>
+    <input id="pinInput" type="number" class="form-control"
+           @bind="hViewModel.EnteredPin" disabled="@hViewModel.IsEnterPinDisabled" />
+    <button class="btn btn-secondary mt-2"
+            @onclick="hViewModel.SubmitPinCommand.Execute" disabled="@hViewModel.IsEnterPinDisabled">
+        Submit PIN
+    </button>
 </div>
 
 <div class="btn-group mb-3" role="group">
-    <button class="btn btn-primary" @onclick="AtmMachine.InsertCard" disabled="@AtmMachine.IsInsertCardDisabled">Insert Card</button>
-    <button class="btn btn-success" @onclick="AtmMachine.SelectTransaction" disabled="@AtmMachine.IsSelectTransactionDisabled">Select Transaction</button>
-    <button class="btn btn-warning" @onclick="AtmMachine.ProcessTransaction" disabled="@AtmMachine.IsProcessTransactionDisabled">Process Transaction</button>
-    <button class="btn btn-danger" @onclick="AtmMachine.EjectCard" disabled="@AtmMachine.IsEjectCardDisabled">Eject Card</button>
-</div>
+    <button class="btn btn-primary"
+            @onclick="hViewModel.InsertCardCommand.Execute" disabled="@hViewModel.IsInsertCardDisabled">
+        Insert Card
+    </button>
 
+    <button class="btn btn-success"
+            @onclick="hViewModel.SelectTransactionCommand.Execute" disabled="@hViewModel.IsSelectTransactionDisabled">
+        Select Transaction
+    </button>
+
+    <button class="btn btn-warning"
+            @onclick="hViewModel.ProcessTransactionCommand.Execute" disabled="@hViewModel.IsProcessTransactionDisabled">
+        Process Transaction
+    </button>
+
+    <button class="btn btn-danger" @onclick="hViewModel.EjectCardCommand.Execute" disabled="@hViewModel.IsEjectCardDisabled">
+        Eject Card
+    </button>
+</div>

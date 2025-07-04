@@ -21,8 +21,8 @@ public class ATMMachine
         _transactionProcessingState = new TransactionProcessingState(this);
 
         _currentState = _idleState;
-    }
 
+    }
     public void SetState(IATMState state)
     {
         _currentState = state;
@@ -36,7 +36,7 @@ public class ATMMachine
 
     public void EnterPIN(int pin)
     {
-        CaptureOutput(() => _currentState.EnterPIN(pin));
+        CaptureOutput(() => _currentState.EnterPin(pin));
     }
 
     public void SelectTransaction()

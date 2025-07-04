@@ -4,6 +4,12 @@
     {
         private ATMMachine _atmMachine;
 
+        public bool CanInsertCard { get; }
+        public bool CanEnterPin { get; }
+        public bool CanSelectTransaction { get; }
+        public bool CanProcessTransaction { get; }
+        public bool CanEjectCard { get; }
+
         public TransactionProcessingState(ATMMachine atmMachine)
         {
             _atmMachine = atmMachine;
@@ -33,6 +39,11 @@
         public void EjectCard()
         {
             Console.WriteLine("Transaction in progress. Please wait.");
+        }
+
+        public void EnterPin(int pin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,6 +4,12 @@
     {
         private ATMMachine _atmMachine;
 
+        public bool CanInsertCard { get; }
+        public bool CanEnterPin { get; }
+        public bool CanSelectTransaction { get; }
+        public bool CanProcessTransaction { get; }
+        public bool CanEjectCard { get; }
+
         public AuthenticationState(ATMMachine atmMachine)
         {
             _atmMachine = atmMachine;
@@ -41,6 +47,11 @@
         {
             Console.WriteLine("Card ejected.");
             _atmMachine.SetState(_atmMachine.GetIdleState());
+        }
+
+        public void EnterPin(int pin)
+        {
+            throw new NotImplementedException();
         }
     }
 }

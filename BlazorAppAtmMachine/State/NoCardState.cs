@@ -2,9 +2,20 @@
 
 internal class NoCardState : IATMState
 {
+    public bool CanInsertCard => true;
+    public bool CanEjectCard => false;
+    public bool CanEnterPin => false;
+    public bool CanSelectTransaction => false;
+    public bool CanProcessTransaction => false;
+
     public void EjectCard(ATM atm)
     {
 
+    }
+
+    public void EnterPin(ATM atm, int pin)
+    {
+        throw new NotImplementedException();
     }
 
     public void InsertCard(ATM atm)
@@ -17,8 +28,18 @@ internal class NoCardState : IATMState
        
     }
 
+    public void ProcessTransaction(ATM atm)
+    {
+        throw new NotImplementedException();
+    }
+
     public void RequestCash(ATM atm, int amount)
     {
 
+    }
+
+    public void SelectTransaction(ATM atm)
+    {
+        throw new NotImplementedException();
     }
 }

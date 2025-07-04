@@ -4,6 +4,12 @@ public class IdleState(ATMMachine atmMachine) : IATMState
 {
     private ATMMachine _atmMachine = atmMachine;
 
+    public bool CanInsertCard { get; }
+    public bool CanEnterPin { get; }
+    public bool CanSelectTransaction { get; }
+    public bool CanProcessTransaction { get; }
+    public bool CanEjectCard { get; }
+
     public void InsertCard()
     {
         Console.WriteLine("Card inserted.");
@@ -28,5 +34,10 @@ public class IdleState(ATMMachine atmMachine) : IATMState
     public void EjectCard()
     {
         Console.WriteLine("No card to eject.");
+    }
+
+    public void EnterPin(int pin)
+    {
+        throw new NotImplementedException();
     }
 }
