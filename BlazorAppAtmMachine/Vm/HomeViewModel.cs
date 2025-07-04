@@ -5,7 +5,6 @@ namespace BlazorAppAtmMachine.Vm;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-
 public partial class HomeViewModel : ObservableObject, IDisposable
 {
     private readonly ATM _atm;
@@ -32,11 +31,11 @@ public partial class HomeViewModel : ObservableObject, IDisposable
     [RelayCommand(CanExecute = nameof(CanProcessTransaction))]
     public void ProcessTransaction()
     {
-        _atm.TransactionAmount = transactionAmount;
+        _atm.TransactionAmount = this.TransactionAmount;
         _atm.ProcessTransaction();
     }
 
-    private bool CanProcessTransaction => transactionAmount > 0;
+    private bool CanProcessTransaction => this.TransactionAmount > 0;
     [RelayCommand] private void EjectCard() => _atm.EjectCard();
 
     // Expose state-dependent button availability via the current state
@@ -59,10 +58,7 @@ public partial class HomeViewModel : ObservableObject, IDisposable
         StateChanged?.Invoke();
     }
 
-    public void Dispose()
-    {
-        _atm.OnStateChanged -= OnStateChanged;
-    }
+    public void Dispose() => _atm.OnStateChanged -= OnStateChanged;
 }
 
 
